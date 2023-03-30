@@ -1,4 +1,4 @@
-import { ChamadoListComponent } from './components/chamado-list/chamado-list.component';
+import { ChamadoListComponent } from './components/chamado/chamado-list/chamado-list.component';
 import { TecnicoListComponent } from './components/tecnico/tecnico-list/tecnico-list.component';
 import { TecnicoCreateComponent } from './components/tecnico/tecnico-create/tecnico-create.component';
 import { TecnicoDeleteComponent } from './components/tecnico/tecnico-delete/tecnico-delete.component';

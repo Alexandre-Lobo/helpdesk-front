@@ -1,9 +1,9 @@
-import { Chamado } from './../../model/chamado';
-import { ChamadoService } from './../../services/chamado.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { Chamado } from 'src/app/model/chamado';
 import { Cliente } from 'src/app/model/cliente';
+import { ChamadoService } from 'src/app/services/chamado.service';
 
 @Component({
   selector: 'app-chamado-list',
