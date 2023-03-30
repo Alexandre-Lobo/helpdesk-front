@@ -5,13 +5,17 @@
     <form class="form">
         <mat-form-field class="full-width" appearance="outline">
           <mat-label>Título do chamado</mat-label>
-          <input matInput>
+          <input 
+          [formControl]="titulo"
+          required
+          matInput
+          >
         </mat-form-field>
     </form>    
     <div class="status-prioridade">
         <mat-form-field appearance="outline">
             <mat-label>Selecione um status</mat-label>
-            <mat-select>
+            <mat-select [formControl]="status" required>
             <mat-option value="0">ABERTO</mat-option>
             <mat-option value="1">EM ANDAMENTO</mat-option>
             <mat-option value="2">ENCERRADO</mat-option>
@@ -20,7 +24,7 @@
 
         <mat-form-field appearance="outline">
             <mat-label>Selecione um prioridade</mat-label>
-            <mat-select>
+            <mat-select [formControl]="prioridade" required>
             <mat-option value="0">BAIXA</mat-option>
             <mat-option value="1">MEDIA</mat-option>
             <mat-option value="2">ALTA</mat-option>
@@ -31,7 +35,7 @@
     <div class="tecnico">
         <mat-form-field class="full-width" appearance="outline">
             <mat-label>Selecione um técnico</mat-label>
-            <mat-select>
+            <mat-select [formControl]="tecnico" required>
             <mat-option value="0">Alexandre</mat-option>
             </mat-select>
         </mat-form-field>
@@ -41,7 +45,7 @@
     <div class="cliente">
         <mat-form-field class="full-width" appearance="outline">
             <mat-label>Selecione um cliente</mat-label>
-            <mat-select>
+            <mat-select [formControl]="cliente" required>
             <mat-option value="0">Albert Eisntein</mat-option>
             </mat-select>
         </mat-form-field>
@@ -50,11 +54,15 @@
     <form class="form">
         <mat-form-field class="full-width" appearance="outline">
             <mat-label>Observações</mat-label>
-            <textarea class="observacoes" matInput ></textarea>
+            <textarea class="observacoes"
+            matInput 
+            [formControl]="observacao"
+            required
+            ></textarea>
         </mat-form-field>
     </form>
 
-    <button mat-raised-button color="primary" class="full-width mat-elevation-z4">Adicionar</button>
+    <button [disabled]="!validaCampos()" mat-raised-button color="primary" class="full-width mat-elevation-z4">Adicionar</button>
     <button mat-stroked-button color="warn" class="full-width mat-elevation-z4">Cancelar</button>
     
     <p>Desenvolvido por Alexandre Lobo</p>
