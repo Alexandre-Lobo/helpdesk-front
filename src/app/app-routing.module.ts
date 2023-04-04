@@ -1,3 +1,4 @@
+import { ChamadoUpdateComponent } from './components/chamado/chamado-update/chamado-update.component';
 import { ChamadoListComponent } from './components/chamado/chamado-list/chamado-list.component';
 import { ChamadoCreateComponent } from './components/chamado/chamado-create/chamado-create.component';
 import { TecnicoListComponent } from './components/tecnico/tecnico-list/tecnico-list.component';
@@ -32,7 +33,8 @@ const routes: Routes = [
       {path: 'tecclientesnicos/delete/:id', component: ClienteDeleteComponent},
 
       {path: 'chamados', component: ChamadoListComponent},
-      {path: 'chamados/create', component: ChamadoCreateComponent}
+      {path: 'chamados/create', component: ChamadoCreateComponent},
+      {path: 'chamados/update/:id', component: ChamadoUpdateComponent}
 
     ]
   }
