@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Chamado } from 'src/app/model/chamado';
 import { Cliente } from 'src/app/model/cliente';
@@ -42,17 +42,28 @@ export class ChamadoUpdateComponent implements OnInit {
     private clienteService: ClienteService,
     private tecnicoService: TecnicoService,
     private toastService: ToastrService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
+    this.chamado.id = this.route.snapshot.paramMap.get('id');
+    this.findById();
     this.findAllClientes();
     this.findAllTecnicos();
   }
 
-  create(): void {
-    this.chamadoService.create(this.chamado).subscribe(resposta => {
-      this.toastService.success("Chamado criado com sucesso", "Novo chaamdo");
+  findById(): void{
+    this.chamadoService.findById(this.chamado.id).subscribe(resposta => {
+      this.chamado = resposta;
+    }, ex => {
+      console.log(ex);
+      this.toastService.error(ex.error.error);
+    });
+  }
+  update(): void {
+    this.chamadoService.update(this.chamado).subscribe(resposta => {
+      this.toastService.success("Chamado atualizado com sucesso", "Atualização de chamado");
       this.router.navigate(['chamados'])
     }, ex => {
       this.toastService.error(ex.error.error);
@@ -72,6 +83,33 @@ export class ChamadoUpdateComponent implements OnInit {
     
   }
 
+  retornaStatus(status: any): string {
+    switch(status) {
+      case 0:
+        return 'ABERTO';
+      case 1:
+        return 'EM ANDAMENTO';
+      case 2:
+        return 'ENCERRADO';
+      default:
+        return 'ERRO';
+    }
+  }
+
+  retornaPrioridade(prioridade: any): string {
+    switch(prioridade) {
+      case 0:
+        return 'BAIXA';
+      case 1:
+        return 'MÉDIA';
+      case 2:
+        return 'ALTA';
+      default:
+        return 'ERRO';
+    }
+  }
+
+  
   validaCampos(): boolean {
       return this.prioridade.valid &&
       this.status.valid &&
