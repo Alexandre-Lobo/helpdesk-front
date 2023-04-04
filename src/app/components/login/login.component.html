@@ -2,7 +2,7 @@
     <form class="form mat-elevation-z8">
         <h1>Helpdesk - Curso Full Stack</h1>
         <img src="assets/img/login-image.svg" alt="Imagem do login">
-        <mat-form-field class="full-width">
+        <mat-form-field class="full-width" appearance="outline">
           <mat-label>Email</mat-label>
           <input 
             [formControl] = "email"
@@ -10,10 +10,12 @@
             [(ngModel)] = "creds.email" 
             name="email" 
             matInput 
-            placeholder="Digite o seu email">
+            placeholder="Digite o seu email"
+            >
+            <mat-icon matSuffix>email</mat-icon>
         </mat-form-field>
       
-        <mat-form-field class="full-width">
+        <mat-form-field class="full-width" appearance="outline">
             <mat-label>Senha</mat-label>
             <input 
                 [formControl] = "senha"
@@ -23,6 +25,7 @@
                 type="password" 
                 matInput 
                 placeholder="Digite sua senha">
+                <mat-icon matSuffix>password</mat-icon>
           </mat-form-field>
 
           <button (click)="logar()" [disabled]="!validaCampos()" class="full-width mat-elevation-z4" mat-stroked-button color="primary">Login</button>
